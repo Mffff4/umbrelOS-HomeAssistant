@@ -1,0 +1,68 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Підключення до Umbrel",
+                "description": "Введіть дані вашого Umbrel. Ім'я хоста або IP-адреса.",
+                "data": {
+                    "host": "Хост",
+                    "password": "Пароль"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "Не вдалося підключитися",
+            "invalid_auth": "Невірна автентифікація",
+            "unknown": "Невідома помилка"
+        },
+        "abort": {
+            "already_configured": "Пристрій вже налаштовано"
+        }
+    },
+    "entity": {
+        "sensor": {
+            "cpu_usage": {
+                "name": "Використання ЦП"
+            },
+            "memory_usage": {
+                "name": "Використання пам'яті"
+            },
+            "disk_usage": {
+                "name": "Використання диска"
+            },
+            "temperature": {
+                "name": "Температура"
+            },
+            "uptime": {
+                "name": "Час роботи"
+            }
+        },
+        "binary_sensor": {
+            "update_available": {
+                "name": "Доступне оновлення"
+            },
+            "2fa_enabled": {
+                "name": "2FA увімкнено"
+            },
+            "backup_in_progress": {
+                "name": "Триває резервне копіювання"
+            }
+        },
+        "button": {
+            "reboot": {
+                "name": "Перезавантажити систему"
+            },
+            "shutdown": {
+                "name": "Вимкнути систему"
+            },
+            "check_update": {
+                "name": "Перевірити оновлення"
+            }
+        },
+        "update": {
+            "system_update": {
+                "name": "UmbrelOS"
+            }
+        }
+    }
+}

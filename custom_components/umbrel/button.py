@@ -1,4 +1,3 @@
-"""Button platform for Umbrel."""
 from homeassistant.components.button import ButtonEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -13,7 +12,6 @@ async def async_setup_entry(
     entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Set up Umbrel buttons."""
     coordinator = hass.data[DOMAIN][entry.entry_id]
     
     entities = [
@@ -29,16 +27,13 @@ async def async_setup_entry(
     async_add_entities(entities)
 
 class UmbrelButtonBase(CoordinatorEntity, ButtonEntity):
-    """Base class for Umbrel buttons."""
 
     def __init__(self, coordinator: UmbrelCoordinator) -> None:
-        """Initialize."""
         super().__init__(coordinator)
         self._attr_has_entity_name = True
 
     @property
     def device_info(self):
-        """Return device info."""
         return {
             "identifiers": {(DOMAIN, "system")},
             "name": "Umbrel System",
@@ -46,44 +41,36 @@ class UmbrelButtonBase(CoordinatorEntity, ButtonEntity):
         }
 
 class UmbrelRebootButton(UmbrelButtonBase):
-    """Button to reboot the system."""
 
     _attr_translation_key = "reboot"
     _attr_unique_id = "umbrel_reboot"
     _attr_icon = "mdi:restart"
 
     async def async_press(self) -> None:
-        """Handle the button press."""
         await self.coordinator.client.reboot()
 
 class UmbrelShutdownButton(UmbrelButtonBase):
-    """Button to shutdown the system."""
 
     _attr_translation_key = "shutdown"
     _attr_unique_id = "umbrel_shutdown"
     _attr_icon = "mdi:power"
 
     async def async_press(self) -> None:
-        """Handle the button press."""
         await self.coordinator.client.shutdown()
 
 class UmbrelCheckUpdateButton(UmbrelButtonBase):
-    """Button to check for updates."""
 
     _attr_translation_key = "check_update"
     _attr_unique_id = "umbrel_check_update"
     _attr_icon = "mdi:update"
 
     async def async_press(self) -> None:
-        """Handle the button press."""
         await self.coordinator.client.check_update()
         await self.coordinator.async_request_refresh()
 
 class UmbrelAppRestartButton(UmbrelButtonBase):
-    """Button to restart an app."""
 
     def __init__(self, coordinator: UmbrelCoordinator, app_data: dict) -> None:
-        """Initialize."""
         super().__init__(coordinator)
         self.app_id = app_data.get("id")
         self._attr_name = f"Restart {app_data.get('name', self.app_id)}"
@@ -91,6 +78,5 @@ class UmbrelAppRestartButton(UmbrelButtonBase):
         self._attr_icon = "mdi:refresh"
 
     async def async_press(self) -> None:
-        """Handle the button press."""
         await self.coordinator.client.set_app_state(self.app_id, "restart")
         await self.coordinator.async_request_refresh()

@@ -1,4 +1,3 @@
-"""Config flow for Umbrel integration."""
 import logging
 from typing import Any, Dict, Optional
 
@@ -20,14 +19,12 @@ DATA_SCHEMA = vol.Schema(
 )
 
 class UmbrelConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for Umbrel."""
 
     VERSION = 1
 
     async def async_step_user(
         self, user_input: Optional[Dict[str, Any]] = None
     ) -> config_entries.ConfigEntry:
-        """Handle the initial step."""
         errors = {}
 
         if user_input is not None:
@@ -41,7 +38,7 @@ class UmbrelConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     )
                 else:
                     errors["base"] = "invalid_auth"
-            except Exception:  # pylint: disable=broad-except
+            except Exception:
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "cannot_connect"
 
