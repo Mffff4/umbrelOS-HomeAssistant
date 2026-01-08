@@ -1,11 +1,11 @@
 {
   "domain": "umbrel",
   "name": "UmbrelOS",
-  "codeowners": [],
+  "codeowners": ["@Mffff4"],
   "config_flow": true,
-  "documentation": "https://github.com/getumbrel/umbrel",
+  "documentation": "https://github.com/Mffff4/umbrelOS-HomeAssistant",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/getumbrel/umbrel/issues",
+  "issue_tracker": "https://github.com/Mffff4/umbrelOS-HomeAssistant/issues",
   "requirements": [],
   "version": "0.1.3"
 }
