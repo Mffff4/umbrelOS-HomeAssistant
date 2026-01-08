@@ -1,0 +1,11 @@
+{
+  "domain": "umbrel",
+  "name": "UmbrelOS",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/getumbrel/umbrel",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/getumbrel/umbrel/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

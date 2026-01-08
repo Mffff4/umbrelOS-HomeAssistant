@@ -1,0 +1,68 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Connect to Umbrel",
+                "description": "Enter your Umbrel details. Hostname or IP address.",
+                "data": {
+                    "host": "Host",
+                    "password": "Password"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "Failed to connect",
+            "invalid_auth": "Invalid authentication",
+            "unknown": "Unexpected error"
+        },
+        "abort": {
+            "already_configured": "Device is already configured"
+        }
+    },
+    "entity": {
+        "sensor": {
+            "cpu_usage": {
+                "name": "CPU Usage"
+            },
+            "memory_usage": {
+                "name": "Memory Usage"
+            },
+            "disk_usage": {
+                "name": "Disk Usage"
+            },
+            "temperature": {
+                "name": "Temperature"
+            },
+            "uptime": {
+                "name": "Uptime"
+            }
+        },
+        "binary_sensor": {
+            "update_available": {
+                "name": "Update Available"
+            },
+            "2fa_enabled": {
+                "name": "2FA Enabled"
+            },
+            "backup_in_progress": {
+                "name": "Backup in Progress"
+            }
+        },
+        "button": {
+            "reboot": {
+                "name": "Reboot System"
+            },
+            "shutdown": {
+                "name": "Shutdown System"
+            },
+            "check_update": {
+                "name": "Check for Updates"
+            }
+        },
+        "update": {
+            "system_update": {
+                "name": "UmbrelOS"
+            }
+        }
+    }
+}

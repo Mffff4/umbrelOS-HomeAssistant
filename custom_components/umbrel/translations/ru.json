@@ -1,0 +1,68 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Подключение к Umbrel",
+                "description": "Введите данные вашего Umbrel. Имя хоста или IP-адрес.",
+                "data": {
+                    "host": "Хост",
+                    "password": "Пароль"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "Не удалось подключиться",
+            "invalid_auth": "Неверная аутентификация",
+            "unknown": "Неизвестная ошибка"
+        },
+        "abort": {
+            "already_configured": "Устройство уже настроено"
+        }
+    },
+    "entity": {
+        "sensor": {
+            "cpu_usage": {
+                "name": "Использование ЦП"
+            },
+            "memory_usage": {
+                "name": "Использование памяти"
+            },
+            "disk_usage": {
+                "name": "Использование диска"
+            },
+            "temperature": {
+                "name": "Температура"
+            },
+            "uptime": {
+                "name": "Время работы"
+            }
+        },
+        "binary_sensor": {
+            "update_available": {
+                "name": "Доступно обновление"
+            },
+            "2fa_enabled": {
+                "name": "2FA включена"
+            },
+            "backup_in_progress": {
+                "name": "Идет резервное копирование"
+            }
+        },
+        "button": {
+            "reboot": {
+                "name": "Перезагрузить систему"
+            },
+            "shutdown": {
+                "name": "Выключить систему"
+            },
+            "check_update": {
+                "name": "Проверить обновления"
+            }
+        },
+        "update": {
+            "system_update": {
+                "name": "UmbrelOS"
+            }
+        }
+    }
+}

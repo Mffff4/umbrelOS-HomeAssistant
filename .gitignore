@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.idea/
+.vscode/
+umbrel_hacs_*.zip
+debug*.py
+discover*.py
+check_app_state.py
+brute*.py
+debug.sh
+api.py
+gemini.md
