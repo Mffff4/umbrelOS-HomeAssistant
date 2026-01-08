@@ -23,6 +23,7 @@ async def async_setup_entry(
     apps = coordinator.data.get("apps", [])
     for app in apps:
         entities.append(UmbrelAppRestartButton(coordinator, app))
+        entities.append(UmbrelAppUpdateButton(coordinator, app))
     
     async_add_entities(entities)
 
@@ -79,4 +80,17 @@ class UmbrelAppRestartButton(UmbrelButtonBase):
 
     async def async_press(self) -> None:
         await self.coordinator.client.set_app_state(self.app_id, "restart")
+        await self.coordinator.async_request_refresh()
+
+class UmbrelAppUpdateButton(UmbrelButtonBase):
+
+    def __init__(self, coordinator: UmbrelCoordinator, app_data: dict) -> None:
+        super().__init__(coordinator)
+        self.app_id = app_data.get("id")
+        self._attr_name = f"Update {app_data.get('name', self.app_id)}"
+        self._attr_unique_id = f"umbrel_app_update_{self.app_id}"
+        self._attr_icon = "mdi:cloud-download"
+
+    async def async_press(self) -> None:
+        await self.coordinator.client.update_app(self.app_id)
         await self.coordinator.async_request_refresh()

@@ -1,4 +1,3 @@
-"""DataUpdateCoordinator for Umbrel."""
 import asyncio
 from datetime import timedelta
 import logging
@@ -15,14 +14,12 @@ from .const import DOMAIN, UPDATE_INTERVAL
 _LOGGER = logging.getLogger(__name__)
 
 class UmbrelCoordinator(DataUpdateCoordinator):
-    """Class to manage fetching Umbrel data."""
 
     def __init__(
         self,
         hass: HomeAssistant,
         client: UmbrelApiClient,
     ) -> None:
-        """Initialize."""
         self.client = client
         super().__init__(
             hass=hass,
@@ -32,9 +29,8 @@ class UmbrelCoordinator(DataUpdateCoordinator):
         )
 
     async def _async_update_data(self):
-        """Fetch data from API endpoint."""
         try:
-            # Parallel fetching for better performance
+
             system_info, apps, update_info, is_2fa_enabled, external_devices, backup_progress = await asyncio.gather(
                 self.client.get_system_info(),
                 self.client.get_apps(),
@@ -45,7 +41,7 @@ class UmbrelCoordinator(DataUpdateCoordinator):
                 return_exceptions=True
             )
             
-            # Handle potential exceptions in gather
+
             if isinstance(system_info, Exception): 
                 _LOGGER.warning("Error fetching system info: %s", system_info)
                 system_info = {}

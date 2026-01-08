@@ -1,4 +1,3 @@
-"""The Umbrel integration."""
 import logging
 
 from homeassistant.config_entries import ConfigEntry
@@ -22,7 +21,6 @@ PLATFORMS: list[Platform] = [
 ]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Umbrel from a config entry."""
     hass.data.setdefault(DOMAIN, {})
 
     host = entry.data[CONF_HOST]
@@ -31,7 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     client = UmbrelApiClient(host, password, session)
     
-    # Verify connection
+
     try:
         if not await client.login():
             _LOGGER.error("Could not log in to Umbrel: Invalid credentials or host")
@@ -55,7 +53,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Unload a config entry."""
     if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
         hass.data[DOMAIN].pop(entry.entry_id)
 
