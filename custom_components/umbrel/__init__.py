@@ -6,9 +6,9 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .api import UmbrelApiClient
-from .const import DOMAIN
-from .coordinator import UmbrelCoordinator
+from custom_components.umbrel.api import UmbrelApiClient
+from custom_components.umbrel.const import DOMAIN
+from custom_components.umbrel.coordinator import UmbrelCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 

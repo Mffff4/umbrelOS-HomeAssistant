@@ -13,8 +13,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.util import dt as dt_util
 
-from .const import DOMAIN
-from .coordinator import UmbrelCoordinator
+from custom_components.umbrel.const import DOMAIN
+from custom_components.umbrel.coordinator import UmbrelCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 

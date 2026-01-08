@@ -6,8 +6,8 @@ from homeassistant import config_entries
 from homeassistant.const import CONF_HOST, CONF_PASSWORD
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .api import UmbrelApiClient
-from .const import DOMAIN, DEFAULT_NAME
+from custom_components.umbrel.api import UmbrelApiClient
+from custom_components.umbrel.const import DOMAIN, DEFAULT_NAME
 
 _LOGGER = logging.getLogger(__name__)
 

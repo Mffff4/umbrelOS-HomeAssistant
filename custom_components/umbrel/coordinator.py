@@ -8,8 +8,8 @@ from homeassistant.helpers.update_coordinator import (
     UpdateFailed,
 )
 
-from .api import UmbrelApiClient
-from .const import DOMAIN, UPDATE_INTERVAL
+from custom_components.umbrel.api import UmbrelApiClient
+from custom_components.umbrel.const import DOMAIN, UPDATE_INTERVAL
 
 _LOGGER = logging.getLogger(__name__)
 
