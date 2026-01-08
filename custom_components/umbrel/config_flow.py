@@ -1,3 +1,4 @@
+"""Config flow for Umbrel integration."""
 import logging
 from typing import Any, Dict, Optional
 
@@ -6,8 +7,8 @@ from homeassistant import config_entries
 from homeassistant.const import CONF_HOST, CONF_PASSWORD
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from custom_components.umbrel.api import UmbrelApiClient
-from custom_components.umbrel.const import DOMAIN, DEFAULT_NAME
+from .umbrel_api import UmbrelApiClient
+from .const import DOMAIN, DEFAULT_NAME
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -19,12 +20,14 @@ DATA_SCHEMA = vol.Schema(
 )
 
 class UmbrelConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+    """Handle a config flow for Umbrel."""
 
     VERSION = 1
 
     async def async_step_user(
         self, user_input: Optional[Dict[str, Any]] = None
     ) -> config_entries.ConfigEntry:
+        """Handle the initial step."""
         errors = {}
 
         if user_input is not None:
@@ -38,7 +41,7 @@ class UmbrelConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     )
                 else:
                     errors["base"] = "invalid_auth"
-            except Exception:
+            except Exception:  # pylint: disable=broad-except
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "cannot_connect"
 

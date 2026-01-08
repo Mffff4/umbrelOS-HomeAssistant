@@ -1,3 +1,4 @@
+"""The Umbrel integration."""
 import logging
 
 from homeassistant.config_entries import ConfigEntry
@@ -6,9 +7,9 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from custom_components.umbrel.api import UmbrelApiClient
-from custom_components.umbrel.const import DOMAIN
-from custom_components.umbrel.coordinator import UmbrelCoordinator
+from .umbrel_api import UmbrelApiClient
+from .const import DOMAIN
+from .coordinator import UmbrelCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -21,6 +22,7 @@ PLATFORMS: list[Platform] = [
 ]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Set up Umbrel from a config entry."""
     hass.data.setdefault(DOMAIN, {})
 
     host = entry.data[CONF_HOST]
@@ -29,7 +31,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     client = UmbrelApiClient(host, password, session)
     
-
+    # Verify connection
     try:
         if not await client.login():
             _LOGGER.error("Could not log in to Umbrel: Invalid credentials or host")
@@ -53,6 +55,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Unload a config entry."""
     if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
         hass.data[DOMAIN].pop(entry.entry_id)
 
