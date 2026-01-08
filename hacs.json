@@ -1,6 +1,5 @@
 {
   "name": "UmbrelOS",
   "render_readme": true,
-  "country": "RU",
-  "iot_class": "local_polling"
+  "country": "RU"
 }
